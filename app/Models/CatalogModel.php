@@ -53,5 +53,15 @@ class CatalogModel extends Model
     public function getList()
     {
         return $this->findAll();
-    }    
+    } 
+    
+    public function getById(int $id){
+        return $this->where(['id' => $id])->first();
+    }
+    
+    public function deleteById(int $id){
+        
+        return $this->delete([$id]);
+            
+    }
 }

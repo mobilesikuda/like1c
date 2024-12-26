@@ -4,8 +4,6 @@
     <a class="btn btn-primary" href="/catalogs/new" role="button">Add...</a>
   </div>
 
-<!-- p>< = var_dump( esc($news_list)) ></p -->
-
 <table class="table table-bordered">
   <thead >
     <tr class="align-items-center">
