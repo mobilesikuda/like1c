@@ -12,4 +12,5 @@ $routes->post('catalogs', [CatalogController::class, 'update']);
 $routes->get('catalogs/new', [CatalogController::class, 'new']); 
 $routes->get('catalogs/(:segment)', [CatalogController::class, 'edit']); 
 
-$routes->get('api/catalogs', [CatalogController::class, 'api']); 
+$routes->get('api/catalogs', [CatalogController::class, 'api']);
+$routes->get('api/catalogs/(:segment)', [CatalogController::class, 'api']);  

@@ -9,12 +9,11 @@ use CodeIgniter\API\ResponseTrait;
 
 class CatalogController extends BaseController
 {
+    use ResponseTrait;
+
     public function index()
     {
         $model = model(CatalogModel::class);
-        //dd($model);
-
-        //$list = $model->getList();
 
         $data = [
               'list' => $model->getList(),
@@ -24,18 +23,20 @@ class CatalogController extends BaseController
         return view('templates/header')
          . view('catalogs/index', $data)
          . view('templates/footer');
-        
-        //return $this->respond($data, 200);
     }
 
-    public function api()
+    public function api(int $id = 0)
     {
         $model = model(CatalogModel::class);
-     
-        $data = [
-              'list' => $model->getList(),
-              'title' => 'Catalog',
-        ];
+        
+        if( $id === 0 ){
+            $data = [
+                'list' => $model->getList(),
+                'title' => 'Catalog',
+            ];
+        }else{
+            $data = $model->getById($id);
+        }
 
         return $this->respond($data, 200);
     }
