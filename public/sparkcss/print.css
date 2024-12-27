@@ -1,0 +1,11 @@
+@media print {
+
+	.header, footer, .banner {
+		display: none;
+	}
+
+	.noprint {
+		display: none;
+	}
+
+}

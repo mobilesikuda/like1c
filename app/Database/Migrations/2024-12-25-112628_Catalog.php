@@ -10,7 +10,7 @@ class Catalog extends Migration
     {
         $this->forge->addField([
             'id' => [
-                'type'           => 'INT',
+                'type'           => 'BIGINT',
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
