@@ -12,7 +12,7 @@
       <th class='noprint'>Action</th>
     </tr>
   </thead>
-  <tbody class=""> <!-- "table-group-divider" -->
+  <tbody class="table-group-divider">
 
   <?php if ($list !== []): ?>
     <?php foreach ($list as $key=>$item): ?>
