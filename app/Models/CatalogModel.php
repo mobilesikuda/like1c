@@ -50,9 +50,10 @@ class CatalogModel extends Model
      *
      * @return array|null
      */
-    public function getList()
+    public function getList(string $strFind="")
     {
-        return $this->findAll();
+        if($strFind !== "") $this->like('name', $strFind);
+        return $this;
     } 
     
     public function getById(int $id){

@@ -11,18 +11,29 @@ class CatalogController extends BaseController
 {
     use ResponseTrait;
 
-    public function index()
-    {
+    public function update_view()
+    { 
+        //$something = $this->request;
+        //dd($something);
+        $findString = $this->request->getJsonVar('strFind') ?? "";
+
         $model = model(CatalogModel::class);
 
         $data = [
-              'list' => $model->getList(),
-              'title' => 'Catalog',
+            'list' => $model->getList($findString)->paginate(5),
+            'pager' => $model->pager,
+            'title' => 'Catalog',
+            'findString' => $findString
         ];
 
+        return view('catalogs/index', $data);
+    }
+
+    public function index()
+    {
         return view('templates/header')
-         . view('catalogs/index', $data)
-         . view('templates/footer');
+         .$this->update_view()
+         .view('templates/footer');
     }
 
     public function api(int $id = 0)
@@ -37,7 +48,6 @@ class CatalogController extends BaseController
         }else{
             $data = $model->getById($id);
         }
-
         return $this->respond($data, 200);
     }
 
@@ -111,7 +121,6 @@ class CatalogController extends BaseController
                 ]);
             }
         }
-
         return $this->index();
     }
 }

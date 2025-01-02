@@ -1,6 +1,9 @@
+<div id="catalog_index">
 <div class="hstack gap-3 p-2 noprint">
   <h4><?= esc($title) ?></h4>
   <a class="btn btn-primary" href="/catalogs/new" role="button">Add...</a>
+  <input class="form-control me-auto" type="text" id="findString" placeholder="Filter..." value="<?= esc($findString) ?>">
+  <a class="btn btn-secondary" onclick="refreshView()" role="button">Update</a>
 </div>
 
 <table class="table table-striped table-bordered table-striped-columns"> 
@@ -22,16 +25,41 @@
             </th>
             <td><?= esc($item['name']) ?></td>
             <td class="d-none d-lg-block"><?= esc($item['title']) ?></td>
-            <td class='noprint'><a class="btn btn-primary btn-sm" href="<?= 'catalogs/'.esc($item['id']) ?>"/>Edit</td>
+            <td class='noprint'><a class="btn btn-primary btn-sm" href="<?= 'catalogs/'.esc($item['id']) ?>">Edit</td>
         </tr>
-    <?php endforeach ?>
+    <?php endforeach ?> 
   <?php endif ?>
   </tbody>
 </table>
+<?= $pager->links() ?>
+</div>
 
-<!-- script type="text/javascript">
+<script type="text/javascript">
   document.getElementById("findString").onchange = function() {
-    document.getElementById("updateButton").href= "/news/?find=" + document.getElementById("findString").value; 
-    return false;
+    refreshView();
   };
-</script -->
+
+  function refreshView() { 
+
+    //let strFind = document.getElementById("findString").value;
+
+    var data = JSON.stringify({
+      'strFind': document.getElementById("findString").value,
+    });
+    //alert(data);
+
+    fetch('catalogs/update_view', {
+      method: "POST",
+      body: data,
+      headers: {
+        "Content-Type": "application/json", //"text/plain"
+        "X-Requested-With": "XMLHttpRequest"
+      }})
+      .then( response => response.text() )
+      .then( result => {
+          document.getElementById("catalog_index").innerHTML = result;
+          //alert("Ok"); 
+      });
+  }
+
+</script>
