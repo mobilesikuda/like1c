@@ -2,20 +2,21 @@
 
 namespace App\Controllers;
 
-use App\Controllers\BaseController;
-use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\CatalogModel;
 use CodeIgniter\API\ResponseTrait;
+use CodeIgniter\Exceptions\PageNotFoundException;
+use CodeIgniter\HTTP\ResponseInterface;
+use ReflectionException;
 
 class CatalogController extends BaseController
 {
     use ResponseTrait;
 
-    public function update_view()
+    public function update_view(): string
     { 
-        //$something = $this->request;
-        //dd($something);
-        $findString = $this->request->getJsonVar('strFind') ?? "";
+        $findString = "";
+        if($this->request->is('json')) 
+            $findString = $this->request->getJsonVar('strFind') ?? "";
 
         $model = model(CatalogModel::class);
 
@@ -29,20 +30,20 @@ class CatalogController extends BaseController
         return view('catalogs/index', $data);
     }
 
-    public function index()
+    public function index(): string
     {
         return view('templates/header')
          .$this->update_view()
          .view('templates/footer');
     }
 
-    public function api(int $id = 0)
+    public function api(int $id = 0): ResponseInterface
     {
         $model = model(CatalogModel::class);
         
         if( $id === 0 ){
             $data = [
-                'list' => $model->getList(),
+                'list' => $model->findAll(),
                 'title' => 'Catalog',
             ];
         }else{
@@ -51,7 +52,7 @@ class CatalogController extends BaseController
         return $this->respond($data, 200);
     }
 
-    public function edit(int $id = 0)
+    public function edit(int $id = 0): string
     {
         helper('form');    
 
@@ -70,7 +71,7 @@ class CatalogController extends BaseController
             . view('templates/footer');
     }
     
-    public function new()
+    public function new(): string
     {
         helper('form');
         $data = [
@@ -84,8 +85,11 @@ class CatalogController extends BaseController
             . view('catalogs/edit', $data)
             . view('templates/footer');
     }
-    
-    public function update()
+
+    /**
+     * @throws ReflectionException
+     */
+    public function update(): string
     {
         helper('form');
 
@@ -117,7 +121,7 @@ class CatalogController extends BaseController
             else{
                 $model->save([
                     'name' => $post['name'],
-                    'title'  => $post['title'],
+                    'title' => $post['title'],
                 ]);
             }
         }

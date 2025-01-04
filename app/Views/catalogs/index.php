@@ -2,7 +2,7 @@
 <div class="hstack gap-3 p-2 noprint">
   <h4><?= esc($title) ?></h4>
   <a class="btn btn-primary" href="/catalogs/new" role="button">Add...</a>
-  <input class="form-control me-auto" type="text" id="findString" placeholder="Filter..." value="<?= esc($findString) ?>">
+  <input class="form-control me-auto" type="text" oninput="refreshView()" id="findString" placeholder="Filter..." value="<?= esc($findString) ?>">
   <a class="btn btn-secondary" onclick="refreshView()" role="button">Update</a>
 </div>
 
@@ -32,23 +32,29 @@
   </tbody>
 </table>
 <?= $pager->links() ?>
-</div>
 
 <script type="text/javascript">
-  document.getElementById("findString").onchange = function() {
-    refreshView();
-  };
+ 
+  //make style - https://getbootstrap.com/docs/5.3/components/pagination/
+  nodeNavUl = document.querySelector("ul.pagination");
+  nodeNavUl.classList.add("justify-content-end");
+  const nodeList1 = document.querySelectorAll("ul.pagination > li"); 
+  for (let i = 0; i < nodeList1.length; i++) {
+    nodeList1[i].classList.add("page-item");
+  }
+  const nodeList2 = document.querySelectorAll("ul.pagination > li > a"); 
+  for (let i = 0; i < nodeList2.length; i++) {
+    nodeList2[i].classList.add("page-link");
+  }
+ 
 
   function refreshView() { 
-
-    //let strFind = document.getElementById("findString").value;
 
     var data = JSON.stringify({
       'strFind': document.getElementById("findString").value,
     });
-    //alert(data);
 
-    fetch('catalogs/update_view', {
+    return fetch('catalogs/update_view', {
       method: "POST",
       body: data,
       headers: {

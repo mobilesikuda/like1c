@@ -48,15 +48,17 @@ class CatalogModel extends Model
 
     /**
      *
-     * @return array|null
+     * @param string $strFind
+     * @return CatalogModel
      */
-    public function getList(string $strFind="")
+    public function getList(string $strFind=""): static
     {
         if($strFind !== "") $this->like('name', $strFind);
         return $this;
     } 
     
-    public function getById(int $id){
+    public function getById(int $id)
+    {
         return $this->where(['id' => $id])->first();
     }
     
