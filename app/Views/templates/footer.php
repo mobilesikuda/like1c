@@ -3,7 +3,7 @@
   </div>
 <!-- /main -->
 
-<footer>
+<footer class="d-print-none">
     <hr>
     <div class="row justify-content-center bg-warning">
       <div class="col-10 col-xl-8">
