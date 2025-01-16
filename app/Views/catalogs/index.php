@@ -2,7 +2,7 @@
 <div class="hstack gap-3 p-2 d-print-none">
   <h4><?= esc($title) ?></h4>
   <a class="btn btn-primary" href="/catalogs/new" role="button">Add...</a>
-  <input class="form-control me-auto" type="text" oninput="refreshView()" id="findString" placeholder="Filter..." value="<?= esc($findString) ?>">
+  <input class="form-control me-auto" type="text" onchange="refreshView()" id="findString" placeholder="Filter..." value="<?= esc($findString) ?>">
   <a class="btn btn-secondary" onclick="refreshView()" role="button">Update</a>
 </div>
 
