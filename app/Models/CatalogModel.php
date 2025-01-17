@@ -53,7 +53,10 @@ class CatalogModel extends Model
      */
     public function getList(string $strFind=""): static
     {
-        if($strFind !== "") $this->like('name', $strFind);
+        if($strFind !== ""){
+          $this->orLike('name', $strFind); 
+          $this->orLike('title', $strFind);  
+        } 
         return $this;
     } 
     
