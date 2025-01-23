@@ -1,1 +1,1 @@
-import {} from './bootstrap.bundle.min.js'
+//import {} from 'bootstrap.bundle.min.js'
