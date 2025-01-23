@@ -23,7 +23,8 @@ class CatalogController extends BaseController
         $data = [
             'list' => $model->getList($findString)->paginate(7),
             'pager' => $model->pager,
-            'title' => 'Catalog',
+            'titles' => $this->getTitlesNamesforForms(),   
+            'buttons' => $this->getButtonsNamesforForms(),
             'findString' => $findString
         ];
 
@@ -44,7 +45,7 @@ class CatalogController extends BaseController
         if( $id === 0 ){
             $data = [
                 'list' => $model->findAll(),
-                'title' => 'Catalog',
+                'title' => 'Catalog.Item'
             ];
         }else{
             $data = $model->getById($id);
@@ -64,7 +65,8 @@ class CatalogController extends BaseController
             throw new PageNotFoundException('Cannot find the news item: id=' . $id);
         }
 
-        $data['titleForm'] = 'Edit item';
+        $data['titles']  = $this->getTitlesNamesforForms();
+        $data['buttons'] = $this->getButtonsNamesforForms();
 
         return view('templates/header')
             . view('catalogs/edit', $data)
@@ -75,7 +77,8 @@ class CatalogController extends BaseController
     {
         helper('form');
         $data = [
-            'titleForm' => 'Create new',
+            'titles'  => $this->getTitlesNamesforForms(),
+            'buttons' => $this->getButtonsNamesforForms(),
             'id' => 0, 
             'name' => '',
             'title'  => ''
@@ -126,5 +129,29 @@ class CatalogController extends BaseController
             }
         }
         return $this->index();
+    }
+
+    private function getButtonsNamesforForms(){
+        return [
+                'Update' => lang('Buttons.Update'),
+                'Add'    => lang('Buttons.Add'),
+                'Edit'   => lang('Buttons.Edit'),
+                'Action' => lang('Buttons.Action'),
+                'Write'  => lang('Buttons.Write'),
+                'Back'   => lang('Buttons.Back'),
+                'Delete' => lang('Buttons.Delete'),
+                'Undo'   => lang('Buttons.Undo'),
+                'Filter_place_holder' => lang('Buttons.Filter_place_holder')
+
+            ];
+    }
+
+    private function getTitlesNamesforForms(){
+        return [
+                'title' => lang('Catalog.Catalog'),
+                'item'  => lang('Catalog.Item'),
+                'name'  => lang('Catalog.name'),
+                'comment' => lang('Catalog.comment')
+            ];
     }
 }

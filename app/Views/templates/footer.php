@@ -19,7 +19,6 @@
       </div>
     </div>
 </footer>
-
-<script src="/sparkjs/spark.js"</script>
+<script src="/sparkjs/bootstrap.bundle.min.js"></script>
 </body>
 </html>

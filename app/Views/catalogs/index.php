@@ -1,18 +1,18 @@
 <div id="catalog_index">
 <div class="hstack gap-3 p-2 d-print-none">
-  <h4><?= esc($title) ?></h4>
-  <a class="btn btn-primary" href="/catalogs/new" role="button">Add...</a>
-  <input class="form-control me-auto" type="text" onchange="refreshView()" id="findString" placeholder="Filter..." value="<?= esc($findString) ?>">
-  <a class="btn btn-secondary" onclick="refreshView()" role="button">Update</a>
+  <h4><?= esc($titles['title']) ?></h4>
+  <a class="btn btn-secondary" onclick="refreshView()" role="button"><?= $buttons['Update']?></a>
+  <a class="btn btn-primary" href="/catalogs/new" role="button"><?=$buttons['Add'] ?></a>
+  <input class="form-control me-auto" type="text" onchange="refreshView()" id="findString" placeholder=<?=$buttons['Filter_place_holder']?> value="<?= esc($findString) ?>">
 </div>
 
 <table class="table table-striped table-bordered table-striped-columns"> 
   <thead>
     <tr class="align-items-center"> 
       <th>V</th>
-      <th>Name</th>
-      <th class="d-none d-lg-block d-print-block">Title</th>
-      <th class='d-print-none'>Action</th>
+      <th><?= esc($titles['name']) ?></th>
+      <th class="d-none d-lg-block d-print-block"><?= esc($titles['comment']) ?></th>
+      <th class='d-print-none'><?=$buttons['Action'] ?></th>
     </tr>
   </thead>
   <tbody class="table-group-divider">
@@ -25,7 +25,7 @@
             </th>
             <td><?= esc($item['name']) ?></td>
             <td class="d-none d-lg-block d-print-block"><?= esc($item['title']) ?></td>
-            <td class='d-print-none'><a class="btn btn-primary btn-sm" href="<?= 'catalogs/'.esc($item['id']) ?>">Edit</td>
+            <td class='d-print-none'><a class="btn btn-primary btn-sm" href="<?= 'catalogs/'.esc($item['id']) ?>"><?=$buttons['Edit'] ?></td>
         </tr>
     <?php endforeach ?> 
   <?php endif ?>

@@ -1,4 +1,4 @@
-<h2><?= esc($titleForm) ?></h2>
+<h2><?= $titles['item'] ?></h2>
 
 <?= session()->getFlashdata('error') ?>
 <?= validation_list_errors() ?>
@@ -20,15 +20,15 @@
   </div>
   <div class="hstack gap-3">
     <div class="p-2">
-        <button type="submit" class="btn btn-primary" name="action" value="edit">Write</button>
+        <button type="submit" class="btn btn-primary" name="action" value="edit"><?=$buttons['Write']?></button>
     </div>
     <div class="p-2 ms-auto">
-        <a class="btn btn-secondary" href="/catalogs" role="button">Back to list</a>
+        <a class="btn btn-secondary" href="/catalogs" role="button"><?=$buttons['Back']?></a>
     </div>
     <div class="vr"></div>
     <div class="p-2">
         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticDelete">
-        Delete
+        <?=$buttons['Delete']?>
       </button>
     </div>
   </div>
@@ -47,8 +47,8 @@
         <p><?= esc($title) ?></p>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-danger" name="action" value="delete">Delete</button>  
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Undo</button>
+        <button type="submit" class="btn btn-danger" name="action" value="delete"><?=$buttons['Delete']?></button>  
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?=$buttons['Undo']?></button>
       </div>
     </div>
   </div>
