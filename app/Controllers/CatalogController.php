@@ -21,7 +21,7 @@ class CatalogController extends BaseController
         $model = model(CatalogModel::class);
 
         $data = [
-            'list' => $model->getList($findString)->paginate(7),
+            'list' => $model->getList($findString)->paginate(25),
             'pager' => $model->pager,
             'titles' => $this->getTitlesNamesforForms(),   
             'buttons' => $this->getButtonsNamesforForms(),

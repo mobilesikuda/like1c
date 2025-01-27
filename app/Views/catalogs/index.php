@@ -1,6 +1,6 @@
 <div id="catalog_index">
+<h4><?= esc($titles['title']) ?></h4>
 <div class="hstack gap-3 p-2 d-print-none">
-  <h4><?= esc($titles['title']) ?></h4>
   <a class="btn btn-secondary" onclick="refreshView()" role="button"><?= $buttons['Update']?></a>
   <a class="btn btn-primary" href="/catalogs/new" role="button"><?=$buttons['Add'] ?></a>
   <input class="form-control me-auto" type="text" onchange="refreshView()" id="findString" placeholder=<?=$buttons['Filter_place_holder']?> value="<?= esc($findString) ?>">
@@ -50,6 +50,23 @@
     const nodeList2 = document.querySelectorAll("ul.pagination > li > a"); 
     for (let i = 0; i < nodeList2.length; i++) {
       nodeList2[i].classList.add("page-link");
+      if(nodeList2[i].children.length > 0){
+        text = nodeList2[i].children.item(0).innerHTML;
+        switch(text){ 
+          case "Last": 
+            nodeList2[i].children[0].innerHTML = ">>|";
+            break;
+          case "Next":
+            nodeList2[i].children[0].innerHTML = ">>";
+            break;
+          case "First": 
+            nodeList2[i].children[0].innerHTML = "|<<";
+            break;
+          case "Previous":
+            nodeList2[i].children[0].innerHTML = "<<";
+            break;
+        }
+      } 
     }
   }
  
@@ -72,5 +89,4 @@
           makeStylePager();
       });
   }
-
 </script>
