@@ -151,7 +151,9 @@ class CatalogController extends BaseController
                 'title' => lang('Catalog.Catalog'),
                 'item'  => lang('Catalog.Item'),
                 'name'  => lang('Catalog.name'),
-                'comment' => lang('Catalog.comment')
+                'comment' => lang('Catalog.comment'),
+                'nameCaption'  => lang('Catalog.nameCaption'),
+                'commentCaption' => lang('Catalog.commentCaption')
             ];
     }
 }

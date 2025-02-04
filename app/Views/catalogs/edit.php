@@ -11,11 +11,11 @@
     <input name="id" class="form-control form-control-lg" id="inputId" value="<?= esc($id) ?>"/>
   </div>
   <div class="mb-3 row">
-    <label for="InputName" class="form-label">Name</label>
+    <label for="InputName" class="form-label"><?= $titles['nameCaption']?></label>
     <input name="name" class="form-control form-control-lg" id="InputName" value="<?= esc($name) ?>" placeholder="Title of catalogs"/>
   </div> 
   <div class="mb-3 row">
-    <label for="inputTitle" class="form-label">Title</label>
+    <label for="inputTitle" class="form-label"><?= $titles['commentCaption']?></label>
     <textarea name="title" class="form-control form-control-lg" id="inputTitle" rows="3"><?= esc($title) ?></textarea>
   </div>
   <div class="hstack gap-3">
