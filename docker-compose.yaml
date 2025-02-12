@@ -1,0 +1,56 @@
+name: like1c
+services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    image: myapp/nginx
+    container_name: like1c-nginx
+    ports:
+      - "80:80"
+    volumes:
+       - ./public:/data/mysite.local/public
+       - ./vendor:/data/mysite.local/vendor
+       - ./app:/data/mysite.local/app
+       - ./tests:/data/mysite.local/tests
+       - ./writable:/data/mysite.local/writable
+       - .env:/data/.env
+    networks:
+      - app-network
+
+  db:
+    image: mysql:latest
+    container_name: like1c-db
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=like1c
+      - MYSQL_DATABASE=db
+      - MYSQL_USER=like1c
+      - MYSQL_PASSWORD=like1c
+    ports:
+      - "33060:3306" 
+    networks:
+      - app-network
+
+  app:
+    image: php:8.3-fpm
+    build:
+       context: ./app
+       dockerfile: Dockerfile
+    container_name: like1c-app
+    depends_on:
+      - db
+    volumes: 
+      - ./public:/data/mysite.local/public
+      - ./vendor:/data/mysite.local/vendor
+      - ./app:/data/mysite.local/app
+      - ./tests:/data/mysite.local/tests
+      - ./writable:/data/mysite.local/writable
+      - .env:/data/.env
+    networks:
+      - app-network
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
