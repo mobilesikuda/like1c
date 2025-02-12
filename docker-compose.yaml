@@ -35,7 +35,7 @@ services:
   app:
     image: php:8.3-fpm
     build:
-       context: ./app
+       context: ./php
        dockerfile: Dockerfile
     container_name: like1c-app
     depends_on:
