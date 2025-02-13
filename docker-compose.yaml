@@ -14,7 +14,6 @@ services:
        - ./app:/data/mysite.local/app
        - ./tests:/data/mysite.local/tests
        - ./writable:/data/mysite.local/writable
-       - .env:/data/.env
     networks:
       - app-network
 
@@ -46,7 +45,6 @@ services:
       - ./app:/data/mysite.local/app
       - ./tests:/data/mysite.local/tests
       - ./writable:/data/mysite.local/writable
-      - .env:/data/.env
     networks:
       - app-network
 
