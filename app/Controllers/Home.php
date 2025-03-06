@@ -6,7 +6,7 @@ class Home extends BaseController
 {
     public function index(): string
     {
-        return phpinfo();
-        //return view('welcome_message');
+        //return phpinfo();
+        return view('welcome_message');
     }
 }
