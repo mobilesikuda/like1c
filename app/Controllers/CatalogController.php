@@ -43,10 +43,7 @@ class CatalogController extends BaseController
         $model = model(CatalogModel::class);
         
         if( $id === 0 ){
-            $data = [
-                'list' => $model->findAll(),
-                'title' => 'Catalog.Item'
-            ];
+            $data = $model->findAll();
         }else{
             $data = $model->getById($id);
         }

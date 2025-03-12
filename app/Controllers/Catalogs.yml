@@ -1,0 +1,56 @@
+openapi: '3.0.3'
+info:
+  title: API Title
+  version: '1.0'
+servers:
+  - url: https://api.server.test/v1
+paths:
+  /api/catalogs:
+    get:
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Catalog'
+  /api/catalogs/{id}:
+    parameters:
+        - name: id
+          in: path
+          description: id of item
+          required: true
+          schema:
+            type: integer
+            format: int64
+    get:
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Catalog'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Item not found        
+components:
+  schemas:
+    Catalog:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 18
+        name:
+          type: string
+          example: 'Life is life'
+        title:
+          type: string
+          example: 'Shit happens'
+      xml:
+        name: catalog 

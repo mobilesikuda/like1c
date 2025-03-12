@@ -2,11 +2,12 @@
 
 use CodeIgniter\Router\RouteCollection;
 use App\Controllers\CatalogController;
+use App\Controllers\Home;
  
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
+$routes->get('/', [Home::class, 'index']);
 $routes->get('catalogs', [CatalogController::class, 'index']);
 $routes->post('catalogs/update_view', [CatalogController::class, 'update_view']);
 
