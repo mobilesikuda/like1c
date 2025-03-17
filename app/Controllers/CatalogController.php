@@ -12,6 +12,25 @@ class CatalogController extends BaseController
 {
     use ResponseTrait;
 
+    public function api(int $id = 0): ResponseInterface
+    {
+        $model = model(CatalogModel::class);
+        
+        if( $id === 0 ){
+            $data = $model->findAll(300);
+        }else{
+            $data = $model->getById($id);
+        }
+        return $this->respond($data, 200);
+    }
+
+    public function index(): string
+    {
+        return view('templates/header')
+         .$this->update_view()
+         .view('templates/footer');
+    }
+
     public function update_view(): string
     { 
         $findString = "";
@@ -29,25 +48,6 @@ class CatalogController extends BaseController
         ];
 
         return view('catalogs/index', $data);
-    }
-
-    public function index(): string
-    {
-        return view('templates/header')
-         .$this->update_view()
-         .view('templates/footer');
-    }
-
-    public function api(int $id = 0): ResponseInterface
-    {
-        $model = model(CatalogModel::class);
-        
-        if( $id === 0 ){
-            $data = $model->findAll();
-        }else{
-            $data = $model->getById($id);
-        }
-        return $this->respond($data, 200);
     }
 
     public function edit(int $id = 0): string
