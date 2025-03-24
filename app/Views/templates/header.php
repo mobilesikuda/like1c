@@ -23,10 +23,10 @@
           <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="/">Домой</a>
+                  <a class="nav-link active" aria-current="page" href="/">Домой</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="/catalogs">Каталог</a>
+                  <a class="nav-link" href="/catalogs">Каталог</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link disabled" aria-disabled="true">Будущее...</a>

@@ -213,8 +213,8 @@
             <li class="menu-toggle">
                 <button id="menuToggle">&#9776;</button>
             </li>
-            <li class="menu-item hidden"><a href="#">Домой</a></li>
-            <li class="menu-item hidden"><a href="/catalogs" target="_blank">Каталог пословиц</a></li>
+            <li class="menu-item hidden"><a href="/">Домой</a></li>
+            <li class="menu-item hidden"><a href="/catalogs">Каталог пословиц</a></li>
         </ul>
     </div>
 
