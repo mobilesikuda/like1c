@@ -43,7 +43,7 @@ class CatalogController extends BaseController
         $model = model(CatalogModel::class);
         
         if( $id === 0 ){
-            $data = $model->findAll();
+            $data = $model->findAll(limit: 300);
         }else{
             $data = $model->getById($id);
         }
