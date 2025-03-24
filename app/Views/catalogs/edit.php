@@ -1,3 +1,4 @@
+<div class="px-3">
 <h2><?= $titles['item'] ?></h2>
 
 <?= session()->getFlashdata('error') ?>
@@ -55,3 +56,4 @@
 </div>
 
 </form>
+</div>
