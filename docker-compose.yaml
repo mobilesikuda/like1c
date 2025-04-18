@@ -9,11 +9,12 @@ services:
     ports:
       - "80:80"
     volumes:
-       - ./public:/data/mysite.local/public
-       - ./vendor:/data/mysite.local/vendor
-       - ./app:/data/mysite.local/app
-       - ./tests:/data/mysite.local/tests
-       - ./writable:/data/mysite.local/writable
+       - ./:/data/mysite.local
+       #- ./public:/data/mysite.local/public
+       #- ./vendor:/data/mysite.local/vendor
+       #- ./app:/data/mysite.local/app
+       #- ./tests:/data/mysite.local/tests
+       #- ./writable:/data/mysite.local/writable
        - ./docker.env:/data/mysite.local/.env
     networks:
       - app-network
@@ -41,12 +42,14 @@ services:
     depends_on:
       - db
     volumes: 
-      - ./public:/data/mysite.local/public
-      - ./vendor:/data/mysite.local/vendor
-      - ./app:/data/mysite.local/app
-      - ./tests:/data/mysite.local/tests
-      - ./writable:/data/mysite.local/writable
+      - ./:/data/mysite.local
+      #- ./public:/data/mysite.local/public
+      #- ./vendor:./docker.env:/data/mysite.local/.envvendor
+      #- ./app:/data/mysite.local/app
+      #- ./tests:/data/mysite.local/tests
+      #- ./writable:/data/mysite.local/writable
       - ./docker.env:/data/mysite.local/.env
+      #- ./spark:/data/mysite.local/spark
     networks:
       - app-network
 
