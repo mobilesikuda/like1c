@@ -6,23 +6,31 @@
   <input class="form-control me-auto" type="text" onchange="refreshView()" id="findString" placeholder=<?=$buttons['Filter_place_holder']?> value="<?= esc($findString) ?>">
 </div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col"><h5><?= esc($titles['name']) ?></h5></div>
-    <div class="col-9 d-none d-lg-block"><h5><?= esc($titles['comment']) ?></h5></div>
-    <div class="col"><?=$buttons['Action'] ?></div>
-  </div>
+<table class="table table-striped table-bordered table-striped-columns"> 
+  <thead>
+    <tr class="align-items-center"> 
+      <th>V</th>
+      <th><?= esc($titles['name']) ?></th>
+      <th class="d-none d-lg-block d-print-block"><?= esc($titles['comment']) ?></th>
+      <th class='d-print-none'><?=$buttons['Action'] ?></th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+
   <?php if ($list !== []): ?>
     <?php foreach ($list as $key=>$item): ?>
-      <div class="row">
-        <div class="col border"><?= esc($item['name']) ?></div>
-        <div class="col-9 border d-none d-lg-block"><?= esc($item['title']) ?></div>
-        <div class="col m-2"><a class="btn btn-primary btn-sm" href="<?= 'catalogs/'.esc($item['id']) ?>"><?=$buttons['Edit'] ?></a></div>
-      <div>
-    </tr>
+        <tr>
+            <th>
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox<?= $key ?>">
+            </th>
+            <td><?= esc($item['name']) ?></td>
+            <td class="d-none d-lg-block d-print-block"><?= esc($item['title']) ?></td>
+            <td class='d-print-none'><a class="btn btn-primary btn-sm" href="<?= 'catalogs/'.esc($item['id']) ?>"><?=$buttons['Edit'] ?></td>
+        </tr>
     <?php endforeach ?> 
   <?php endif ?>
-</div>
+  </tbody>
+</table>
 <div class="d-print-none">
 <?= $pager->links() ?>
 </div>
