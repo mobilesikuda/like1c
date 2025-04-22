@@ -1,5 +1,10 @@
-# Простой примерчик запуска "таблички в интернете" CodeIgniter 4 и Bootstrap 5.3
+# Простой примерчик запуска "таблички в интернете" (CodeIgniter 4 и Bootstrap 5.3)
 
+## Не забудьте передзапуском обновить бибилиотеки - composer update
+
+Запускаем (два варианта)
+- php -S localhost:8080 -t public                 
+- docker compose up
 
 ## What is CodeIgniter?
 
