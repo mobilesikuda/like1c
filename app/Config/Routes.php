@@ -9,6 +9,7 @@ use App\Controllers\Home;
  */
 $routes->get('/', [Home::class, 'index']);
 $routes->get('catalogs', [CatalogController::class, 'index']);
+$routes->get('news', [CatalogController::class, 'index']);
 $routes->post('catalogs/update_view', [CatalogController::class, 'update_view']);
 
 $routes->post('catalogs', [CatalogController::class, 'update']);  
